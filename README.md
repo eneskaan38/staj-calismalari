@@ -1,1 +1,1 @@
-# staj-calismalari
+# Staj-Calısmaları
