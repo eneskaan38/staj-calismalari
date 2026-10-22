@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Defter – Yazılım Bilgi Platformu</title>
+  <meta name="description" content="Web geliştirme üzerine kısa ve net yazıların bulunduğu bilgi platformu.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="site-title">Defter</h1>
+    <nav class="site-nav" aria-label="Ana menü">
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="#yazilar">Yazılar</a></li>
+        <li><a class="site-nav__link" href="#yazar">Yazar</a></li>
+        <li><a class="site-nav__link" href="#iletisim">İletişim</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content" id="yazilar">
+    <h2 class="section-title">Son yazılar</h2>
+
+    <article class="post">
+      <h3 class="post__title">Anlamsal HTML neden önemlidir?</h3>
+      <p class="post__description">
+        Doğru etiketi seçmek yalnızca düzen meselesi değildir. Tarayıcılar, arama motorları
+        ve ekran okuyucular sayfayı etiketler üzerinden anlar.
+      </p>
+      <footer class="post__meta">
+        <p>Yazan: <span class="post__author">Enes Kaan Duran</span></p>
+        <p><time datetime="2026-10-15">17 Ekim 2026</time></p>
+      </footer>
+    </article>
+
+    <article class="post">
+      <h3 class="post__title">CSS dosyası nasıl düzenli tutulur?</h3>
+      <p class="post__description">
+        Proje büyüdükçe stil dosyası karışır. Sıralı bir yapı ve değişkenler, ileride
+        değişiklik yapmayı çok kolaylaştırır.
+      </p>
+      <footer class="post__meta">
+        <p>Yazan: <span class="post__author">Enes Kaan Duran</span></p>
+        <p><time datetime="2026-10-08">22 Ekim 2026</time></p>
+      </footer>
+    </article>
+
+    <article class="post">
+      <h3 class="post__title">Mobil öncelikli tasarıma giriş</h3>
+      <p class="post__description">
+        Önce küçük ekranı düşünmek, içeriğin gerçekten önemli olan kısmını ortaya çıkarır.
+        Büyük ekranlar sonradan eklenen bir iyileştirmedir.
+      </p>
+      <footer class="post__meta">
+        <p>Yazan: <span class="post__author">Enes Kaan Duran</span></p>
+        <p><time datetime="2026-10-01">19 Ekim 2026</time></p>
+      </footer>
+    </article>
+  </main>
+
+  <aside class="sidebar" id="yazar" aria-labelledby="yazar-baslik">
+    <h2 class="section-title" id="yazar-baslik">Yazar hakkında</h2>
+    <p>
+      <strong>Enes Kaan Duran</strong> web geliştirme üzerine yazıyor. Amacı, karmaşık konuları
+      kısa ve anlaşılır anlatmak.
+    </p>
+    <p>Bu hafta üzerinde çalıştığı konu: erişilebilir sayfa yapıları.</p>
+  </aside>
+
+  <footer class="site-footer" id="iletisim">
+    <p>&copy; 2026 Defter. Tüm hakları saklıdır.</p>
+  </footer>
+
+</body>
+</html>
