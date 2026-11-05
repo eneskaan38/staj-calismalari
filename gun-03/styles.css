@@ -1,0 +1,315 @@
+/* ==========================================================
+   1. Base / Reset
+   ========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3,
+p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* ==========================================================
+   2. Variables
+   ========================================================== */
+:root {
+  /* Renkler */
+  --color-bg: #f6f8fa;
+  --color-surface: #ffffff;
+  --color-text: #1c2530;
+  --color-muted: #55606c;
+  --color-accent: #0e6a6a;
+  --color-border: #d3dae1;
+
+  /* Boşluk ölçeği */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+
+  /* Yazı */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-h3: 1.25rem;
+  --text-h2: 1.5rem;
+  --text-h1: 2rem;
+
+  /* Diğer */
+  --radius: 6px;
+  --measure: 65ch;
+  --page-width: 72rem;
+  --card-min-width: 12rem;   /* article kartının en az genişliği */
+}
+
+/* ==========================================================
+   3. Global Styles (Typography)
+   ========================================================== */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+p {
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================
+   4. Layout
+
+   HTML değiştirilemediği için ekstra sarmalayıcı (wrapper) yok.
+   Bu yüzden sayfa düzenini doğrudan <body> üzerinde Flexbox ile
+   kuruyorum. header / main / aside / footer birer flex öğesi.
+
+   Sayfa seviyesi  -> Flexbox (body)
+   İçerik seviyesi -> Grid (main içindeki yazı listesi)
+   ========================================================== */
+
+/* --- Sayfa düzeni: Flexbox --- */
+body {
+  display: flex;                 /* flex: sayfa düzeni */
+  flex-direction: row;           /* öğeler yan yana dizilir */
+  flex-wrap: wrap;               /* header ve footer ayrı satıra düşebilsin diye */
+  gap: var(--space-4);
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding: var(--space-4);
+}
+
+/* Header ve footer tam genişlik alır, kendi satırlarında durur */
+header,
+.site-footer {
+  width: 100%;
+}
+
+/* main ile aside yan yana: main iki pay, aside bir pay alır */
+main {
+  flex: 2 1 0;
+  min-width: 0;                  /* içerik taşmasın diye */
+}
+
+aside {
+  flex: 1 1 0;
+  min-width: 0;
+  align-self: flex-start;        /* aside kendi içeriği kadar yüksek olsun */
+}
+
+/* --- Yazı listesi: Grid (main içinde) --- */
+main {
+  display: grid;                 /* grid: içerik düzeni */
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+  gap: var(--space-3);
+  align-content: start;
+}
+
+/* Başlık tüm sütunları kaplasın */
+main .section-title {
+  grid-column: 1 / -1;
+}
+
+/* ==========================================================
+   5. Sections (Box Model)
+   ========================================================== */
+header {
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-text);
+}
+
+main {
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+article {
+  padding: var(--space-3);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+aside {
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+}
+
+.site-footer {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* ==========================================================
+   6. Components
+   ========================================================== */
+
+/* --- Header: başlık solda, menü sağda (Flexbox) --- */
+.site-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;   /* ana eksende iki uca yasla */
+  align-items: center;              /* çapraz eksende ortala */
+  gap: var(--space-3);
+}
+
+/* --- Menü --- */
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* inline-block: yatay dizilir ama padding dikeyde de çalışır */
+header nav a {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+header nav a:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+/* --- Bölüm başlıkları --- */
+.section-title {
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* main içinde grid gap boşluğu verdiği için alt boşluğu kaldır */
+main .section-title {
+  margin-bottom: 0;
+}
+
+/* --- Yazı kartının içi --- */
+.post__title {
+  margin-bottom: var(--space-2);
+}
+
+.post__description {
+  margin-bottom: var(--space-3);
+}
+
+/* Meta bilgi: flex ile alt alta/yan yana, çizgiyle ayrılmış */
+.post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* --- Display türleri (bilinçli kullanım) --- */
+/* inline: metnin içinde akar, satır kırmaz */
+.post__author,
+time {
+  display: inline;
+}
+
+.post__author {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+time {
+  font-style: italic;
+}
+
+/* block: kendi satırını kaplar, alt alta dizilir */
+aside h2,
+aside p {
+  display: block;
+}
+
+aside p + p {
+  margin-top: var(--space-3);
+}
+
+/* ==========================================================
+   7. Responsive (Media Queries)
+   ========================================================== */
+
+/* Tablet ve mobil: her şey alt alta, yazılar tek sütun */
+@media (max-width: 60rem) {
+  body {
+    flex-direction: column;       /* header, main, aside, footer alt alta */
+  }
+
+  /* Sütun yönünde flex-basis yükseklik anlamına gelir; sıfırla */
+  main,
+  aside {
+    flex: none;
+  }
+
+  /* aside, main'in altında kalır (HTML sırası zaten böyle) */
+  aside {
+    align-self: stretch;
+  }
+
+  main {
+    grid-template-columns: 1fr;   /* sütun sayısı: 1 */
+  }
+}
+
+/* Küçük telefonlar: daha az boşluk, header alt alta */
+@media (max-width: 40rem) {
+  body {
+    padding: var(--space-3);
+  }
+
+  main,
+  aside {
+    padding: var(--space-3);
+  }
+
+  .site-header {
+    flex-direction: column;       /* başlık üstte, menü altta */
+    align-items: flex-start;
+  }
+}
